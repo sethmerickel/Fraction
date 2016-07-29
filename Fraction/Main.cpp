@@ -1,3 +1,6 @@
+// Author: Seth Merickel
+// Test driver for Fraction class
+
 #include <iostream>
 #include <string>
 
@@ -89,6 +92,8 @@ int main()
    expect_lt(Fraction(1, 2), Fraction(1));
    expect_lt(Fraction(1, 3), Fraction(1, 2));
    expect_lt(Fraction(-1, 2), Fraction(1, 3));
+   expect_gt(Fraction(1, 2), Fraction(1, 3));
+   expect_gt(Fraction(-1, 3), Fraction(-1, 2));
 
    std::cout << "Test Math\n";
    expect_eq(Fraction(1, 2) + Fraction(1, 2), Fraction(1));

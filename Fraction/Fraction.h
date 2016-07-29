@@ -167,6 +167,8 @@ inline Fraction operator/(const Fraction& f1, const Fraction& f2)
    return Fraction(num, den);
 }
 
+//--------------------------------------------------------------------------
+
 inline std::ostream& operator<<(std::ostream& os, const Fraction& f)
 {
    os << f.m_num << "/" << f.m_den;
