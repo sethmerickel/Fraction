@@ -1,4 +1,6 @@
 #pragma once
+// Fraction class 
+// Author: Seth Merickel
 
 #include <iostream>
 
@@ -39,7 +41,6 @@ inline void reduce(int& num, int& den)
 //     1) Should always be reduced
 //     2) Denominator should never be zero
 //     3) Numerator should always carry the sign
-
 class Fraction
 {
 public:

@@ -30,6 +30,24 @@ void expect_ne(const T& expected, const T& result)
    }
 }
 
+template <typename T>
+void expect_lt(const T& left, const T& right)
+{
+   if (false == (left < right))
+   {
+      std::cout << "FAILED: " << left << " !< " << right << std::endl;
+   }
+}
+
+template <typename T>
+void expect_gt(const T& left, const T& right)
+{
+   if (false == (left > right))
+   {
+      std::cout << "FAILED: " << left << " !> " << right << std::endl;
+   }
+}
+
 int main()
 {   
    std::cout << "Test GCD\n";
@@ -47,6 +65,7 @@ int main()
 
    std::cout << "Test reduce\n";
    int a = 2, b = 4;
+   reduce(a, b);
    expect_eq(a, 1); expect_eq(b, 2);
    a = 0; b = 4;
    reduce(a, b);
@@ -60,6 +79,31 @@ int main()
    a = 2; b = -4;
    reduce(a, b);
    expect_eq(-1, a); expect_eq(2, b);
+
+   std::cout << "Test Compare\n";
+   expect_eq(Fraction(1, 2), Fraction(2, 4));
+   expect_eq(Fraction(1, -2), Fraction(-1, 2));
+   expect_eq(Fraction(0, 1), Fraction(0, 2));
+   expect_ne(Fraction(1, 2), Fraction(1, 3));
+   expect_ne(Fraction(1, 2), Fraction(-1, 2));
+   expect_lt(Fraction(1, 2), Fraction(1));
+   expect_lt(Fraction(1, 3), Fraction(1, 2));
+   expect_lt(Fraction(-1, 2), Fraction(1, 3));
+
+   std::cout << "Test Math\n";
+   expect_eq(Fraction(1, 2) + Fraction(1, 2), Fraction(1));
+   expect_eq(Fraction(1, 2) + Fraction(0), Fraction(1, 2));
+   expect_eq(Fraction(1) - Fraction(1, 2), Fraction(1, 2));
+   expect_eq(Fraction(1, 2) + Fraction(-1, 3), Fraction(1, 2) - Fraction(1, 3));
+   expect_eq(Fraction(2, 3) + Fraction(1, 3), Fraction(1));
+   expect_eq(Fraction(-1, 2) + Fraction(1, 2), Fraction(0));
+   expect_eq(Fraction(1, 2) * Fraction(1, 2), Fraction(1, 4));
+   expect_eq(Fraction(1, 2) / Fraction(1, 2), Fraction(1));
+   expect_eq(Fraction(1, 3) * Fraction(0), Fraction(0));
+   expect_eq(Fraction(-1, 3) * Fraction(1), Fraction(-1, 3));
+   expect_eq(Fraction(-1, 3) / Fraction(1), Fraction(-1, 3));
+   expect_eq(Fraction(1, 3) / Fraction(-1), Fraction(-1, 3));
+
 
    return 0;
 }
